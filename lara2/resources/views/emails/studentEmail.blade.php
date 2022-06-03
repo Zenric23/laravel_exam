@@ -17,9 +17,10 @@
     <p class="name" style="display: none;">{{ $user->name }}</p>
     <p class="email" style="display: none;">{{ $user->email }}</p>
 
+
     <p>I'm inviting you to my class.</p>
 
-    <a href="http://127.0.0.1:8000/invitation/{{ $user->name }}/{{ $user->email }}/{{ $course_code }}">
+    <a href="http://127.0.0.1:8000/invitation/{{ $user->id }}/{{ $user->name }}/{{ $user->email }}/{{ $course_code }}">
         Click here to decide.
     </a>
      

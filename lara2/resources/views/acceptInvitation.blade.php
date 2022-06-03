@@ -14,8 +14,9 @@
 <div class="container mt-5">
     <h2 class="text-center">
         Hi {{ $name }}! would you like to Accept the invitation?
+
         <div class="flex mt-4">
-            <span class="accept btn btn-primary col-md-6">
+            <span class="accept btn btn-success col-md-6">
                 Yes
             </span>
             <span class="rejected btn btn-danger col-md-6">
@@ -39,14 +40,16 @@
     });
       
     $(".accept").click(function(){
-        const name = window.location.pathname.split("/")[2].replace('%20', ' ');
-        const email = window.location.pathname.split("/")[3];
-        const course_code = window.location.pathname.split("/")[4];
+        const id = parseInt(window.location.pathname.split("/")[2]);
+        const name = window.location.pathname.split("/")[3].replace('%20', ' ');
+        const email = window.location.pathname.split("/")[4];
+        const course_code = window.location.pathname.split("/")[5];
   
         $.ajax({
             type:'POST',
             url:"{{ route('ajax.send.invitation') }}",
             data:{
+               id:id,
                name:name,
                email:email,
                course_code:[course_code],

@@ -10,12 +10,12 @@
 </head>
 <body>
   
-<div class="container mt-5">
-    <h1>Invite student to  {{ $subject->desc }} class.</h1>
+<div class="container-fluid mt-5">
+    <h1 class="text-center">Invite student to  {{ $subject->desc }} class.</h1>
 
     <a href="/dashboard" class="d-block">back to dashboard</a>
   
-    <button class="btn btn-success send-email my-4">Send Email</button>
+    <button class="btn btn-primary send-email my-4 ">Send Email</button>
   
     <table class="table table-bordered data-table">
         <thead>

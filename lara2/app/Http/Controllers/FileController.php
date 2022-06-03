@@ -21,8 +21,9 @@ class FileController extends Controller
     	 $request->validate([
             'fileInput' => 'required|file|mimes:pdf,ppt,docx,xlsx',
         ]);
-    
-        $fileName = time().'.'.$request->fileInput->extension();  
+        
+        // $fileCodeName = time().'.'.$request->fileInput->extension();  
+        $fileName = time().'.'.$request->fileInput->getClientOriginalName();  
         $path = public_path('file_resources' . '/' . $fileName);
      
         $request->fileInput->move(public_path('file_resources'), $fileName);
@@ -34,8 +35,7 @@ class FileController extends Controller
         ]);
         
         return back()
-            ->with('success','You have successfully upload file.')
-            ->with('image',$fileName)
+            ->with('success','You have successfully uploaded file.')
             ->with('path',$path);
     }
 }

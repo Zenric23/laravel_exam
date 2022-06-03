@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\TeacherClass;
+use App\Models\File;
 use App\Models\has_class_students;
 use App\Mail\studentEmail;
+use Illuminate\Support\Facades\Auth;
 use Mail;
   
 
@@ -50,9 +52,9 @@ class StudentController extends Controller
     }
 
 
-    public function viewInvitation($name, $email, $course_code)
+    public function viewInvitation($id, $name, $email, $course_code)
     {
-        return view('acceptInvitation', compact('name', 'email', 'course_code'));
+        return view('acceptInvitation', compact('id', 'name', 'email', 'course_code'));
     }
 
 
@@ -65,6 +67,7 @@ class StudentController extends Controller
             has_class_students::create([
                 "name" => $request->name,
                 "email" => $request->email,
+                "student_id" => $request->id,
                 "subject_codes" => json_encode($request->course_code),
             ]);
 
@@ -77,6 +80,17 @@ class StudentController extends Controller
         }
 
     }
+
+    
+    public function viewStudentRes($courseCode)
+    {
+        $courseName = TeacherClass::where("course_code", "=", $courseCode)->first();
+        $resources = File::where("course_code", "=", $courseCode)->get();
+        return view('student-res', compact('resources', 'courseCode', 'courseName'));
+    }
+
+
+    
     
 
 }

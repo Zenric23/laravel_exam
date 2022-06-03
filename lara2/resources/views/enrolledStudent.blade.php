@@ -25,11 +25,11 @@ foreach($students as $student) {
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <title>Document</title>
 </head>
-<body>
-    <div class="container mt-5">
+<body>  
+    <div class="container-fluid mt-5">
         
         <a class="mb-5 d-block" href="/my-classes">back to classes</a>
-        <h1>Student of "{{ $subjectWew->desc }}" Class.</h1>
+        <h1 class="text-center">Student of "{{ $subjectWew->desc }}" Class.</h1>
         
         @if (count($enrollledStudents) > 0)
         <table class="table mt-4">

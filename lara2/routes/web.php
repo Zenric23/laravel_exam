@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\StudentController;
-use App\Http\Controllers\MailController;
 use App\Http\Controllers\FileController;
 
 
@@ -51,21 +50,23 @@ Route::get('/about', function () {
     return view('profile.about');
 })->name('about');
 
-Route::get('/code', [SubjectController::class, 'subjectList']);
 
-Route::get('/class/{key}', [SubjectController::class, 'urlFetch']);
 
-Route::get('/email-student', [MailController::class, 'mailer']);
-Route::post('/send-mail', [MailController::class, 'sendMail'])->name('EmailStudent.send');
 Route::get('/users/{courseCode}', [StudentController::class, 'index'])->name('users.index');
 Route::get('/enrolledStudent/{courseCode}', [StudentController::class, 'enrolledStudentView']);
 
 Route::post('/users-send-email', [StudentController::class, 'sendEmail'])->name('ajax.send.email');
-Route::get('/invitation/{name}/{email}/{course_code}', [StudentController::class, 'viewInvitation']);
+Route::get('/invitation/{id}/{name}/{email}/{course_code}', [StudentController::class, 'viewInvitation']);
 Route::post('/request-invitation', [StudentController::class, 'acceptInvitation'])->name('ajax.send.invitation');
 
 Route::get('upload/image/{courseCode}', [FileController::class,'ImageUpload'])->name('ImageUpload');
 Route::post('upload/image/store/{courseCode}', [FileController::class,'ImageUploadStore'])->name('ImageUploadStore');
+
+
+Route::get('/resources/{courseCode}', [StudentController::class,'viewStudentRes']);
+
+
+
 
 
 

@@ -14,5 +14,6 @@ class has_class_students extends Model
         'name',
         'email',
         'subject_codes',
+        'student_id'
     ];
 }

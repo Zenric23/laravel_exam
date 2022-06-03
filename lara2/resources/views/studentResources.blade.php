@@ -22,19 +22,17 @@
 </head>
 <body>
  
-    <div class="container mt-5">
+    <div class="container-fluid mt-5">
         <a href="/my-classes">back to classes</a>
         <h2 class="mb-5" style="margin-top: 30px;">Class "{{ $subject->desc }}" resources.</h2>
         <div class="panel-body"> 
             <div class="col-md-8">    
-            @if ($message = Session::get('success'))
+            <!-- @if ($message = Session::get('success'))
             <div class="alert alert-success alert-block">
                 <button type="button" class="close" data-dismiss="alert">×</button>
                 <strong>{{ $message }}</strong>
-                <strong>{{ Session::get('path') }}</strong>
             </div>
-            <!-- <img src="{{asset('images')}}/{{ Session::get('image') }}" width="300" height="300"> -->
-            @endif
+            @endif -->
         
             @if (count($errors) > 0)
                 <div class="alert alert-danger">
@@ -49,20 +47,18 @@
             
             <form action="{{ url('upload/image/store/' . $courseCode)}}" method="POST" enctype="multipart/form-data">
             @csrf
-                <div class="row"> <br>   
                     <div class="col-md-6">
                         <input type="file" name="fileInput" class="form-control">
                     </div>     
                     <div class="col-md-6">
-                        <button type="submit" class="btn btn-success">Upload</button>
+                        <button type="submit" class="btn btn-success my-5">Upload</button>
                     </div>     
-                </div>
             </form>
             </div>    
         </div>
 
         @if (count($refFiles) > 0)
-        <p class="mt-5 text-secondary">Note: click the file name to download them.</p>
+        <p class="text-secondary">Note: click here the filename to download.</p>
         <table class="table">
             <thead>
                 <tr>
@@ -75,10 +71,12 @@
                 @foreach($refFiles as $file)
                     <tr>
                     <td>{{ $file->id }}</td>
-                    <td class="file-link text-primary">
+                    <td class="text-primary">
                         <a href="{{ $file->path }}">{{ $file->name }}</a>
                     </td>
                     <td>{{ $file->course_code }}</td>
+                    
+                    <td class="file-link d-none">{{ $file->path }}</td>
                     </tr>
                 @endforeach
             </tbody>
@@ -92,12 +90,13 @@
 
     <script>
         const files = document.querySelectorAll('.file-link');
-
+        
         files.forEach(file=> {
             file.addEventListener('click', (e)=> {
-                window.location.replace(e.target.textContent)
+                window.open(e.target.textContent)
             })
         })
     </script>
+
 </body>
 </html>

@@ -2,7 +2,7 @@
      <!-- Livewire component for My Class menu -->
     <div class="p-6">
     <div class="flex items-center justify-end px-4 py-3 text-right sm:px-6">
-        <x-jet-button wire:click="createShowModal">
+        <x-jet-button class="bg-primary" wire:click="createShowModal">
             {{ __('Create') }}
         </x-jet-button>
     </div>
@@ -10,7 +10,7 @@
          <thead class="border">
              <tr>
                  <th class="py-5 border">Class id</th>
-                 <th class="py-5 border">Course code</th>
+                 <th class="py-5 border">Course ID</th>
                  <th class="py-5 border">Description</th>
                  <th class="py-5 border">Units</th>
                  <th class="py-5 border">Action</th>
@@ -24,15 +24,15 @@
                         <td class="py-3 border">{{ $item->course_code }}</td>
                         <td class="py-3 border">{{ $item->desc }}</td>
                         <td class="py-3 border">{{ $item->units }}</td>
-                        <td class="py-3 border text-indigo-600 space-x-5">
-                            <a style="margin-right: 20px; color: green;" href="/users/{{ $item->course_code }}" >
-                                invite student
+                        <td class="py-3 border  text-indigo-600 space-x-5">
+                            <a style="margin-left: 20px; text-decoration: underline; color: green;" href="/users/{{ $item->course_code }}" >
+                                invite students
                             </a>
-                            <a style="margin-right: 20px; color: violet;" href="/enrolledStudent/{{ $item->course_code }}" >
-                            view students
+                            <a style="margin-left: 20px; text-decoration: underline; color: violet;" href="/enrolledStudent/{{ $item->course_code }}" >
+                                view students
                             </a>
-                            <a href="/upload/image/{{ $item->course_code }}" >
-                            view resources
+                            <a style="margin-left: 20px; text-decoration: underline; color: blue;" href="/upload/image/{{ $item->course_code }}" >
+                                view resources
                             </a>
                         </td>
                 @endforeach
